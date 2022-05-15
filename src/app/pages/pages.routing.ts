@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 const routes: Routes = [
   {
@@ -15,18 +17,44 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
+        data: {
+          title: 'Dashboard',
+        },
       },
       {
         path: 'progress',
         component: ProgressComponent,
+        data: {
+          title: 'progress',
+        },
       },
       {
         path: 'charts1',
         component: Charts1Component,
+        data: {
+          title: 'charts1',
+        },
       },
       {
         path: 'account-settings',
         component: AccountSettingsComponent,
+        data: {
+          title: 'account-settings',
+        },
+      },
+      {
+        path: 'promises',
+        component: PromisesComponent,
+        data: {
+          title: 'promises',
+        },
+      },
+      {
+        path: 'observable',
+        component: RxjsComponent,
+        data: {
+          title: 'observable',
+        },
       },
     ],
   },
