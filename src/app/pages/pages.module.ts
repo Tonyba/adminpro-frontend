@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from '../app-routing.module';
@@ -15,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,20 +25,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     AccountSettingsComponent,
     PromisesComponent,
     RxjsComponent,
+    ProfileComponent,
   ],
-  exports: [
-    DashboardComponent,
-    Charts1Component,
-    ProgressComponent,
-    PagesComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    NgChartsModule,
-    AppRoutingModule,
-    FormsModule,
-    ComponentsModule,
-  ],
+  exports: [DashboardComponent, Charts1Component, ProgressComponent, PagesComponent],
+  imports: [CommonModule, SharedModule, NgChartsModule, AppRoutingModule, FormsModule, ComponentsModule, ReactiveFormsModule],
 })
 export class PagesModule {}

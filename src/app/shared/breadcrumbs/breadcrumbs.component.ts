@@ -16,7 +16,6 @@ export class BreadcrumbsComponent implements OnDestroy {
     // console.log(route.snapshot.children[0].data);
 
     this.tituloSubs$ = this.getArgsRoute().subscribe(({ title }) => {
-      console.log(title);
       this.title = title;
       document.title = `AdminPro - ${title}`;
     });

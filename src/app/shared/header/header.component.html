@@ -158,7 +158,7 @@
                   <!-- Message -->
                   <a href="#">
                     <div class="user-img">
-                      <img src="./assets/images/users/1.jpg" alt="user" class="img-circle" />
+                      <img [src]="user.imgUrl" alt="user" class="img-circle" />
                       <span class="profile-status online pull-right"></span>
                     </div>
                     <div class="mail-contnet">
@@ -248,25 +248,25 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-            ><img src="./assets/images/users/1.jpg" alt="user" class="profile-pic"
+            ><img [src]="user.imgUrl" alt="user" class="profile-pic"
           /></a>
           <div class="dropdown-menu dropdown-menu-right animated fadeIn fast">
             <ul class="dropdown-user">
               <li>
                 <div class="dw-user-box">
                   <div class="u-img">
-                    <img src="./assets/images/users/1.jpg" alt="user" />
+                    <img [src]="user.imgUrl" alt="user" />
                   </div>
                   <div class="u-text">
-                    <h4>Steave Jobs</h4>
-                    <p class="text-muted">varun@gmail.com</p>
-                    <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                    <h4>{{ user.name }}</h4>
+                    <p class="text-muted">{{ user.email | slice: 0:19 }}{{ user.email.length > 19 ? "..." : "" }}</p>
+                    <a routerLink="/dashboard/profile" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                   </div>
                 </div>
               </li>
               <li role="separator" class="divider"></li>
               <li>
-                <a href="#"><i class="ti-user"></i> My Profile</a>
+                <a routerLink="/dashboard/profile"><i class="ti-user"></i> My Profile</a>
               </li>
               <li>
                 <a href="#"><i class="ti-wallet"></i> My Balance</a>
