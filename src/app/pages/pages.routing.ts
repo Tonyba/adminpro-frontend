@@ -10,6 +10,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './maintainment/users/users.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,15 @@ const routes: Routes = [
         component: ProfileComponent,
         data: {
           title: 'Profile',
+        },
+      },
+
+      //Mantainment
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          title: 'App User',
         },
       },
     ],

@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input type="text" class="form-control" placeholder="Search User..." />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Loading</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Please wait</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Users</h4>
+        <h5 class="card-subtitle">Users registered in my app</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Auth</th>
+                <th class="text-nowrap">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>4.</td>
+                <td>Fix and squish bugs</td>
+                <td>
+                  <div class="progress progress-xs progress-striped active">
+                    <div class="progress-bar bg-success" style="width: 90%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-success">90%</span></td>
+                <td><span class="badge bg-success">90%</span></td>
+                <td class="text-nowrap">
+                  <a href="#" data-toggle="tooltip" data-original-title="Edit">
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+
+                  <a href="#" data-toggle="tooltip" data-original-title="Delete">
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card-footer clearfix pl-0">
+        <ul class="pagination pagination-sm m-0 float-left">
+          <li class="page-item"><a class="page-link" href="#">Back</a></li>
+          &nbsp;
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

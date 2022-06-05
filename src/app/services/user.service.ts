@@ -1,13 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, delay, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { environment } from '../../environments/environment';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { User } from '../models/user.model';
+import { GetUser } from '../interfaces/get-users.interface';
 
 declare const google: any;
 
@@ -29,6 +30,14 @@ export class UserService {
 
   get uid() {
     return this.user.uid || '';
+  }
+
+  get headers(): Object {
+    return {
+      headers: {
+        'x-token': this.token,
+      },
+    };
   }
 
   createUser(formData: RegisterForm) {
@@ -115,16 +124,32 @@ export class UserService {
       role: this.user.role || '',
     };
 
-    return this.http.put(`${baseUrl}/user/${this.uid}`, data, {
-      headers: {
-        'x-token': this.token,
-      },
-    });
+    return this.http.put(`${baseUrl}/user/${this.uid}`, data, this.headers);
   }
 
   logout() {
     localStorage.removeItem('token');
-    google.accounts.id.disableAutoSelect();
     this.router.navigateByUrl('/login');
+    google.accounts.id.disableAutoSelect();
+  }
+
+  getUsers(from: number = 0) {
+    return this.http.get<GetUser>(`${baseUrl}/user?from=${from}`, this.headers).pipe(
+      map((resp) => {
+        const users = resp.users.map((user) => new User(user.name, user.email, '', user.img, user.role, user.google, user.uid));
+        return {
+          total: resp.total,
+          users,
+        };
+      })
+    );
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(`${baseUrl}/user/${id}`, this.headers);
+  }
+
+  saveUser(user: User) {
+    return this.http.put(`${baseUrl}/user/${user.uid}`, user, this.headers);
   }
 }
