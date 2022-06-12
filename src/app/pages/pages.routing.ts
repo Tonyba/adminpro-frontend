@@ -14,6 +14,8 @@ import { UsersComponent } from './maintainment/users/users.component';
 import { HospitalsComponent } from './maintainment/hospitals/hospitals.component';
 import { MedicsComponent } from './maintainment/medics/medics.component';
 import { MedicComponent } from './maintainment/medics/medic.component';
+import { SearchComponent } from './search/search.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -75,6 +77,7 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
+        canActivate: [AdminGuard],
         data: {
           title: 'Users Maintenance',
         },
@@ -100,6 +103,14 @@ const routes: Routes = [
         component: MedicComponent,
         data: {
           title: 'Medic Maintenance',
+        },
+      },
+
+      {
+        path: 'search/:term',
+        component: SearchComponent,
+        data: {
+          title: 'Search',
         },
       },
     ],

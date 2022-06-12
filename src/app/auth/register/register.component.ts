@@ -31,12 +31,10 @@ export class RegisterComponent implements OnInit {
 
   createUser() {
     this.formSubmitted = true;
-    console.log(this.registerForm.value);
 
     if (this.registerForm.valid) {
       this.userService.createUser(this.registerForm.value).subscribe(
         (resp) => {
-          console.log('user created');
           this.router.navigateByUrl('/');
         },
         (err) => {

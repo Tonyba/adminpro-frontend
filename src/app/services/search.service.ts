@@ -40,6 +40,10 @@ export class SearchService {
     return results;
   }
 
+  searchAll(term: string) {
+    return this.http.get(`${baseUrl}/all/${term}`, this.headers);
+  }
+
   search(type: 'user' | 'medic' | 'hospital', term: string): Observable<any> {
     return this.http.get<any[]>(`${baseUrl}/all/collection/${type}/${term}`, this.headers).pipe(
       map((resp: any) => {

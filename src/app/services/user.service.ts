@@ -32,6 +32,10 @@ export class UserService {
     return this.user.uid || '';
   }
 
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE' {
+    return this.user.role!;
+  }
+
   get headers(): Object {
     return {
       headers: {
@@ -40,12 +44,16 @@ export class UserService {
     };
   }
 
+  saveLocalStorage(token: string, menu: any) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
   createUser(formData: RegisterForm) {
     return this.http.post(`${baseUrl}/user/register`, formData).pipe(
       map((resp: any) => {
-        console.log(resp);
         //localStorage.setItem('id', resp.user.uid);
-        localStorage.setItem('token', resp.token);
+        this.saveLocalStorage(resp.token, resp.menu);
         //localStorage.setItem('user', JSON.stringify(resp.user));
       })
     );
@@ -84,9 +92,8 @@ export class UserService {
 
     return this.http.post(`${baseUrl}/login`, formData).pipe(
       map((resp: any) => {
-        console.log(resp);
         //localStorage.setItem('id', resp.user.uid);
-        localStorage.setItem('token', resp.token);
+        this.saveLocalStorage(resp.token, resp.menu);
         //localStorage.setItem('user', JSON.stringify(resp.user));
       })
     );
@@ -95,7 +102,10 @@ export class UserService {
   loginGoogle(token: string) {
     return this.http.post(`${baseUrl}/login/google`, { token }).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp.token);
+        this.saveLocalStorage(resp.token, resp.menu);
+        this.ngZone.run(() => {
+          this.router.navigate(['/dashboard']);
+        });
       })
     );
   }
@@ -111,7 +121,7 @@ export class UserService {
         map((resp: any) => {
           const { email, google, name, role, uid, img = '' } = resp.user;
           this.user = new User(name, email, '', img, role, google, uid);
-          localStorage.setItem('token', resp.token);
+          this.saveLocalStorage(resp.token, resp.menu);
           return true;
         }),
         catchError((err) => of(false))
@@ -129,6 +139,7 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
     this.router.navigateByUrl('/login');
     google.accounts.id.disableAutoSelect();
   }
