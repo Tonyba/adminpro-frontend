@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { FileUploadService } from './file-upload.service';
 
 const baseUrl = environment.baseUrL;
 
@@ -12,9 +11,9 @@ export class ModalImageService {
   type: 'users' | 'medics' | 'hospitals' = '' as 'users' | 'medics' | 'hospitals';
   id: string = '';
   img: string = '';
-  newImage: EventEmitter<string> = new EventEmitter<string>();
+  public newImage: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private fileUploadService: FileUploadService) {}
+  constructor() {}
 
   get hideModal() {
     return this._hideModal;

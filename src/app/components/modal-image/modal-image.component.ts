@@ -47,6 +47,7 @@ export class ModalImageComponent implements OnInit {
       .then((img: any) => {
         Swal.fire('Saved', 'Image uploaded', 'success');
         this.modalImageService.newImage.emit(img);
+        this.imgTemp = null;
         this.closeModal();
       })
       .catch((err) => {

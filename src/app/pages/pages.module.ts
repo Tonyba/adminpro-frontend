@@ -16,6 +16,10 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintainment/users/users.component';
+import { HospitalsComponent } from './maintainment/hospitals/hospitals.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { MedicsComponent } from './maintainment/medics/medics.component';
+import { MedicComponent } from './maintainment/medics/medic.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +32,20 @@ import { UsersComponent } from './maintainment/users/users.component';
     RxjsComponent,
     ProfileComponent,
     UsersComponent,
+    HospitalsComponent,
+    MedicsComponent,
+    MedicComponent,
   ],
   exports: [DashboardComponent, Charts1Component, ProgressComponent, PagesComponent],
-  imports: [CommonModule, SharedModule, NgChartsModule, AppRoutingModule, FormsModule, ComponentsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    NgChartsModule,
+    AppRoutingModule,
+    FormsModule,
+    ComponentsModule,
+    ReactiveFormsModule,
+    PipesModule,
+  ],
 })
 export class PagesModule {}

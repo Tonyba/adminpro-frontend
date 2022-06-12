@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUsers();
-    this.imgSubs = this.modalImageService.newImage.pipe(delay(100)).subscribe((img) => this.getUsers());
+    this.imgSubs = this.modalImageService.newImage.pipe(delay(200)).subscribe((img) => this.getUsers());
   }
 
   ngOnDestroy(): void {
@@ -59,7 +59,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.users = [...this.usersTemp];
       return;
     }
-    this.searchService.search('user', term).subscribe((resp) => {
+    this.searchService.search('user', term).subscribe((resp: User[]) => {
       this.users = resp || [];
     });
   }

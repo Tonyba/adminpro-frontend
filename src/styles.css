@@ -22,6 +22,10 @@
     width: 140px !important
 }
 
+.w200 {
+    width: 200px !important
+}
+
 .avatar {
     border: 1px solid gray;
     width: 30px;

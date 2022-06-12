@@ -11,6 +11,9 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintainment/users/users.component';
+import { HospitalsComponent } from './maintainment/hospitals/hospitals.component';
+import { MedicsComponent } from './maintainment/medics/medics.component';
+import { MedicComponent } from './maintainment/medics/medic.component';
 
 const routes: Routes = [
   {
@@ -73,7 +76,30 @@ const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         data: {
-          title: 'App User',
+          title: 'Users Maintenance',
+        },
+      },
+
+      {
+        path: 'hospitals',
+        component: HospitalsComponent,
+        data: {
+          title: 'Hospitals Maintenance',
+        },
+      },
+
+      {
+        path: 'medics',
+        component: MedicsComponent,
+        data: {
+          title: 'Medics Maintenance',
+        },
+      },
+      {
+        path: 'medic/:id',
+        component: MedicComponent,
+        data: {
+          title: 'Medic Maintenance',
         },
       },
     ],

@@ -4,6 +4,9 @@ import { GetUser } from '../interfaces/get-users.interface';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user.model';
+import { Hospital } from '../models/hospital.model';
+import { Observable } from 'rxjs';
+import { Medic } from '../models/medic.model';
 
 const baseUrl = environment.baseUrL;
 
@@ -29,25 +32,29 @@ export class SearchService {
     return results.map((user) => new User(user.name, user.email, '', user.img, user.role, user.google, user.uid));
   }
 
-  search(type: 'user' | 'medic' | 'hospital', term: string) {
+  private tranformHospitals(results: any[]): Hospital[] {
+    return results;
+  }
+
+  private tranformMedics(results: any[]): Medic[] {
+    return results;
+  }
+
+  search(type: 'user' | 'medic' | 'hospital', term: string): Observable<any> {
     return this.http.get<any[]>(`${baseUrl}/all/collection/${type}/${term}`, this.headers).pipe(
       map((resp: any) => {
         switch (type) {
           case 'user':
             return this.transformUsers(resp.results);
-            break;
 
           case 'hospital':
-            return;
-            break;
+            return this.tranformHospitals(resp.results);
 
           case 'medic':
-            return;
-            break;
+            return this.tranformMedics(resp.results);
 
           default:
             return [];
-            break;
         }
       })
     );
