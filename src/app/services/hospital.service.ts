@@ -12,33 +12,19 @@ const baseUrl = environment.baseUrL;
 export class HospitalService {
   constructor(private http: HttpClient) {}
 
-  get token() {
-    return localStorage.getItem('token') || '';
-  }
-
-  get headers(): Object {
-    return {
-      headers: {
-        'x-token': this.token,
-      },
-    };
-  }
-
   getHospital() {
-    return this.http
-      .get<any>(`${baseUrl}/hospital`, this.headers)
-      .pipe(map((resp: { ok: boolean; hospitals: Hospital[] }) => resp.hospitals));
+    return this.http.get<any>(`${baseUrl}/hospital`).pipe(map((resp: { ok: boolean; hospitals: Hospital[] }) => resp.hospitals));
   }
 
   createHospital(name: string) {
-    return this.http.post(`${baseUrl}/hospital`, { name }, this.headers);
+    return this.http.post(`${baseUrl}/hospital`, { name });
   }
 
   updateHospital(id: string, name: string) {
-    return this.http.put(`${baseUrl}/hospital/${id}`, { name }, this.headers);
+    return this.http.put(`${baseUrl}/hospital/${id}`, { name });
   }
 
   deleteHospital(id: string) {
-    return this.http.delete(`${baseUrl}/hospital/${id}`, this.headers);
+    return this.http.delete(`${baseUrl}/hospital/${id}`);
   }
 }

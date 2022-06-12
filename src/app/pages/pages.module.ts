@@ -21,6 +21,8 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MedicsComponent } from './maintainment/medics/medics.component';
 import { MedicComponent } from './maintainment/medics/medic.component';
 import { SearchComponent } from './search/search.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService } from '../interceptors/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,13 @@ import { SearchComponent } from './search/search.component';
     MedicsComponent,
     MedicComponent,
     SearchComponent,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
   ],
   exports: [DashboardComponent, Charts1Component, ProgressComponent, PagesComponent],
   imports: [

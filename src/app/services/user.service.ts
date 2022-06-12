@@ -36,14 +36,6 @@ export class UserService {
     return this.user.role!;
   }
 
-  get headers(): Object {
-    return {
-      headers: {
-        'x-token': this.token,
-      },
-    };
-  }
-
   saveLocalStorage(token: string, menu: any) {
     localStorage.setItem('token', token);
     localStorage.setItem('menu', JSON.stringify(menu));
@@ -134,7 +126,7 @@ export class UserService {
       role: this.user.role || '',
     };
 
-    return this.http.put(`${baseUrl}/user/${this.uid}`, data, this.headers);
+    return this.http.put(`${baseUrl}/user/${this.uid}`, data);
   }
 
   logout() {
@@ -145,7 +137,7 @@ export class UserService {
   }
 
   getUsers(from: number = 0) {
-    return this.http.get<GetUser>(`${baseUrl}/user?from=${from}`, this.headers).pipe(
+    return this.http.get<GetUser>(`${baseUrl}/user?from=${from}`).pipe(
       map((resp) => {
         const users = resp.users.map((user) => new User(user.name, user.email, '', user.img, user.role, user.google, user.uid));
         return {
@@ -157,10 +149,10 @@ export class UserService {
   }
 
   deleteUser(id: string) {
-    return this.http.delete(`${baseUrl}/user/${id}`, this.headers);
+    return this.http.delete(`${baseUrl}/user/${id}`);
   }
 
   saveUser(user: User) {
-    return this.http.put(`${baseUrl}/user/${user.uid}`, user, this.headers);
+    return this.http.put(`${baseUrl}/user/${user.uid}`, user);
   }
 }
