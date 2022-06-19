@@ -25,7 +25,7 @@ export class MedicsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getMedics();
-    this.imgSubs = this.modalImageService.newImage.pipe(delay(200)).subscribe((img) => {
+    this.imgSubs = this.modalImageService.newImage.pipe(delay(1500)).subscribe((img) => {
       this.getMedics();
     });
   }

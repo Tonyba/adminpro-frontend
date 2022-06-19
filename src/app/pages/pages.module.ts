@@ -40,13 +40,7 @@ import { InterceptorService } from '../interceptors/interceptor.service';
     MedicComponent,
     SearchComponent,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true,
-    },
-  ],
+  providers: [],
   exports: [DashboardComponent, Charts1Component, ProgressComponent, PagesComponent],
   imports: [
     CommonModule,

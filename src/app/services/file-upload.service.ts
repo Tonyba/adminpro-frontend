@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { UserService } from '../services/user.service';
 
 const base_url = environment.baseUrL;
 
@@ -7,7 +8,7 @@ const base_url = environment.baseUrL;
   providedIn: 'root',
 })
 export class FileUploadService {
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   async updatePhoto(file: File, type: 'users' | 'medics' | 'hospitals', id: string) {
     try {
@@ -16,6 +17,7 @@ export class FileUploadService {
       formData.append('image', file);
 
       const resp = await fetch(url, {
+        headers: { 'x-token': this.userService.token },
         method: 'PUT',
         body: formData,
       });

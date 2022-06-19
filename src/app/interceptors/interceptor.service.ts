@@ -10,12 +10,10 @@ export class InterceptorService implements HttpInterceptor {
   constructor(private userService: UserService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const headers = new HttpHeaders({
-      'x-token': this.userService.token,
-    });
-
     const reqClone = req.clone({
-      headers,
+      headers: new HttpHeaders({
+        'x-token': this.userService.token,
+      }),
     });
 
     return next.handle(reqClone);

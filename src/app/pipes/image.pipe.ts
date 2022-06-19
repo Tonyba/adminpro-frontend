@@ -9,13 +9,11 @@ const base_url = environment.baseUrL;
 export class ImagePipe implements PipeTransform {
   transform(img?: string, type?: 'users' | 'medics' | 'hospitals'): unknown {
     if (!img) {
-      return `${base_url}/upload/${type}/no-image`;
-    } else if (img.includes('https')) {
-      return img;
-    } else if (img) {
-      return `${base_url}/upload/${type}/${img}`;
+      return `https://res.cloudinary.com/digyedakq/image/upload/v1655658250/adminpro/no-image_mzlwfx.png`;
+    } else if (img.includes('no-image')) {
+      return `https://res.cloudinary.com/digyedakq/image/upload/v1655658250/adminpro/no-image_mzlwfx.png`;
     } else {
-      return `${base_url}/upload/${type}/no-image`;
+      return img;
     }
   }
 }
