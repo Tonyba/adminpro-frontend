@@ -25,7 +25,7 @@ export class FileUploadService {
       const data = await resp.json();
 
       if (data.ok) {
-        return data.fileName;
+        return data.img;
       } else {
         console.log(data.msg);
         return false;
